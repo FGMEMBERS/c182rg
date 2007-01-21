@@ -57,8 +57,8 @@
     <action>
       <button>0</button>
       <binding>
-        <command>property-toggle</command>
-        <property>controls/gear/gear-handle-down</property>
+        <command>nasal</command>
+        <script>controls.gearToggle()</script>
       </binding>
     </action>
   </animation>

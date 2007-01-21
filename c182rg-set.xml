@@ -229,26 +229,7 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
           <property>sim/model/hide-yoke</property>
         </binding>
       </key>
-<!-- Steal the g and G keys to make the squat switch work -->
- <key n="71">
-  <name>G</name>
-  <desc>Gear handle down.</desc>
-  <binding>
-     <command>property-assign</command>
-     <property>controls/gear/gear-handle-down</property>
-     <value>1</value>
-  </binding>
- </key>
 
- <key n="103">
-  <name>g</name>
-  <desc>Gear handle up.</desc>
-  <binding>
-     <command>property-assign</command>
-     <property>controls/gear/gear-handle-down</property>
-     <value>0</value>
-  </binding>
- </key>
     </keyboard>
     </input>
 
