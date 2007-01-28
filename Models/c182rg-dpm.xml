@@ -5,26 +5,35 @@
   <path>c182rg.ac</path>
 
   <!-- 3D Panel -->
-
   <panel>
     <name>Panel</name>
     <path>Aircraft/c182rg/Panels/c182rg-3d-panel.xml</path>
     <bottom-left>
-      <x-m>-0.11</x-m>
+      <x-m>-0.16</x-m>
       <y-m>-0.55</y-m>
       <z-m>-0.25</z-m>
     </bottom-left>
     <bottom-right>
-      <x-m>-0.11</x-m>
+      <x-m>-0.16</x-m>
       <y-m> 0.65</y-m>
       <z-m>-0.25</z-m>
     </bottom-right>
     <top-left>
-      <x-m>-0.11</x-m>
+      <x-m>-0.16</x-m>
       <y-m>-0.55</y-m>
       <z-m> 0.08</z-m>
     </top-left>
   </panel>
+
+  <model>
+    <name>Transponder</name>
+    <path>Aircraft/Instruments-3d/kt70/kt70.xml</path>
+    <offsets>
+      <x-m>-0.155</x-m>
+      <y-m>-0.015</y-m>
+      <z-m>-0.225</z-m>
+    </offsets>
+  </model>
 
   <model>
     <name>MagCompass</name>
