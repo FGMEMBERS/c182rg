@@ -52,3 +52,6 @@ controls.gearDown = func {
     }
     gearFncy();
 }
+
+controls.gearToggle = func { controls.gearDown(getprop("/controls/gear/gear-handle-down") > 0 ? -1 : 1); }
+
