@@ -139,6 +139,9 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
 </controls>
 
  <instrumentation>
+  <encoder>
+    <serviceable type="bool">true</serviceable>
+  </encoder>
   <attitude-indicator>
    <config>
     <tumble-flag>true</tumble-flag>
@@ -175,7 +178,7 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
 
 <nasal>
   <kap140>
-   <file>Aircraft/c182/kap140.nas</file>
+   <file>Aircraft/Generic/kap140.nas</file>
   </kap140>
   <squatswitch>
     <file>Aircraft/c182rg/Nasal/squatswitch.nas</file>
