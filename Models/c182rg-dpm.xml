@@ -11,17 +11,17 @@
     <bottom-left>
       <x-m>-0.16</x-m>
       <y-m>-0.55</y-m>
-      <z-m>-0.25</z-m>
+      <z-m>-0.28</z-m>
     </bottom-left>
     <bottom-right>
       <x-m>-0.16</x-m>
       <y-m> 0.65</y-m>
-      <z-m>-0.25</z-m>
+      <z-m>-0.28</z-m>
     </bottom-right>
     <top-left>
       <x-m>-0.16</x-m>
       <y-m>-0.55</y-m>
-      <z-m> 0.08</z-m>
+      <z-m> 0.04</z-m>
     </top-left>
   </panel>
 
@@ -31,7 +31,7 @@
     <offsets>
       <x-m>-0.155</x-m>
       <y-m>-0.015</y-m>
-      <z-m>-0.225</z-m>
+      <z-m>-0.27</z-m>
     </offsets>
   </model>
 
@@ -144,6 +144,12 @@
     <object-name>Pedal.2</object-name>
     <object-name>Pedal.3</object-name>
     <object-name>Pedal.4</object-name>
+    <object-name>Pitot</object-name>
+    <object-name>Ariel</object-name>
+    <object-name>BeaconOff</object-name>
+    <object-name>TailBeacon</object-name>
+    <object-name>LeftFuelCap</object-name>
+    <object-name>RightFuelCap</object-name>
     <min-m>0</min-m>
     <max-m>100</max-m>
   </animation>
@@ -356,15 +362,13 @@
         <dep>-20</dep>
       </entry>
     </interpolation>
-    <center>
-      <x-m>0.94</x-m>
-      <y-m>-3.83</y-m>
-      <z-m>0.40</z-m>
-    </center>
     <axis>
-      <x>-0.15</x>
-      <y>-1.00</y>
-      <z>0.03</z>
+      <x1-m>1.22</x1-m>
+      <y1-m>-2.546</y1-m>
+      <z1-m>0.334</z1-m>
+      <x2-m>0.761</x2-m>
+      <y2-m>-5.101</y2-m>
+      <z2-m>0.419</z2-m>
     </axis>
   </animation>
 
@@ -386,39 +390,76 @@
         <dep>-20</dep>
       </entry>
     </interpolation>
-    <center>
-      <x-m>0.94</x-m>
-      <y-m>3.83</y-m>
-      <z-m>0.40</z-m>
-    </center>
     <axis>
-      <x>-0.15</x>
-      <y>1.00</y>
-      <z>0.03</z>
+      <x1-m>1.22</x1-m>
+      <y1-m>2.546</y1-m>
+      <z1-m>0.334</z1-m>
+      <x2-m>0.761</x2-m>
+      <y2-m>5.101</y2-m>
+      <z2-m>0.419</z2-m>
     </axis>
   </animation>
   
   <animation>
     <type>rotate</type>
     <object-name>LeftFlap</object-name>
+    <property>surface-positions/flap-pos-norm</property>
+    <factor>30</factor>
+    <axis>
+      <x1-m>1.219</x1-m>
+      <y1-m>-2.542</y1-m>
+      <z1-m>0.332</z1-m>
+      <x2-m>1.131</x2-m>
+      <y2-m>-0.599</y2-m>
+      <z2-m>0.315</z2-m>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
     <object-name>RightFlap</object-name>
     <property>surface-positions/flap-pos-norm</property>
     <factor>30</factor>
-    <center>
-      <x-m>1.1</x-m>
-      <y-m>0.0</y-m>
-      <z-m>0.28</z-m>
-    </center>
     <axis>
-      <x>0.0</x>
-      <y>1.0</y>
-      <z>0.0</z>
+      <x1-m>1.131</x1-m>
+      <y1-m>0.599</y1-m>
+      <z1-m>0.315</z1-m>
+      <x2-m>1.219</x2-m>
+      <y2-m>2.542</y2-m>
+      <z2-m>0.332</z2-m>
     </axis>
   </animation>
 
   <animation>
     <type>rotate</type>
     <object-name>LeftElevator</object-name>
+    <property>surface-positions/elevator-pos-norm</property>
+    <interpolation>
+      <entry>
+        <ind>-1.0</ind>
+        <dep>-28</dep>
+      </entry>
+      <entry>
+        <ind>0</ind>
+        <dep>0</dep>
+      </entry>
+      <entry>
+        <ind>1.0</ind>
+        <dep>23</dep>
+      </entry>
+    </interpolation>
+    <axis>
+      <x1-m>5.138</x1-m>
+      <y1-m>-1.657</y1-m>
+      <z1-m>-0.475</z1-m>
+      <x2-m>5.133</x2-m>
+      <y2-m>-0.081</y2-m>
+      <z2-m>-0.475</z2-m>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
     <object-name>RightElevator</object-name>
     <property>surface-positions/elevator-pos-norm</property>
     <interpolation>
@@ -435,15 +476,13 @@
         <dep>23</dep>
       </entry>
     </interpolation>
-    <center>
-      <x-m>5.1</x-m>
-      <y-m>0.0</y-m>
-      <z-m>-0.45</z-m>
-    </center>
     <axis>
-      <x>0.0</x>
-      <y>1.0</y>
-      <z>0.0</z>
+      <x1-m>5.133</x1-m>
+      <y1-m>0.081</y1-m>
+      <z1-m>-0.475</z1-m>
+      <x2-m>5.138</x2-m>
+      <y2-m>1.657</y2-m>
+      <z2-m>-0.475</z2-m>
     </axis>
   </animation>
 
@@ -452,15 +491,13 @@
     <object-name>Rudder</object-name>
     <property>surface-positions/rudder-pos-norm</property>
     <factor>17.5</factor>
-    <center>
-      <x-m>5.45</x-m>
-      <y-m>0.0</y-m>
-      <z-m>0.0</z-m>
-    </center>
     <axis>
-      <x>0.72</x>
-      <y>0.0</y>
-      <z>1.0</z>
+      <x1-m>4.976</x1-m>
+      <y1-m>0.0</y1-m>
+      <z1-m>-0.41</z1-m>
+      <x2-m>5.938</x2-m>
+      <y2-m>0</y2-m>
+      <z2-m>0.942</z2-m>
     </axis>
   </animation>
 
@@ -618,14 +655,14 @@
     <object-name>NoseWheelStrut</object-name>
     <object-name>NoseWheelFork</object-name>
     <property>surface-positions/rudder-pos-norm</property>
-    <factor>-20</factor>
+    <factor>20</factor>
     <axis>
-      <x1-m>-0.41</x1-m>
+      <x1-m>-0.633</x1-m>
       <y1-m>0.0</y1-m>
-      <z1-m>-1.452</z1-m>
-      <x2-m>-0.409</x2-m>
+      <z1-m>-0.706</z1-m>
+      <x2-m>-0.773</x2-m>
       <y2-m>0.0</y2-m>
-      <z2-m>0.266</z2-m>
+      <z2-m>-1.181</z2-m>
     </axis>
   </animation>
   
@@ -639,11 +676,11 @@
     <interpolation>
       <entry>
         <ind>0</ind>
-        <dep>80</dep>
+        <dep>95</dep>
       </entry>
       <entry>
         <ind>0.3</ind>
-        <dep>80</dep>
+        <dep>95</dep>
       </entry>
       <entry>
         <ind>1.0</ind>
@@ -651,9 +688,9 @@
       </entry>
     </interpolation>
     <center>
-      <x-m>-0.63</x-m>
+      <x-m>-0.639</x-m>
       <y-m>0.0</y-m>
-      <z-m>-0.72</z-m>
+      <z-m>-0.722</z-m>
     </center>
     <axis>
       <x>0.0</x>
@@ -681,12 +718,12 @@
       </entry>
     </interpolation>
     <axis>
-      <x1-m>-1.41</x1-m>
-      <y1-m>-0.167</y1-m>
-      <z1-m>-0.77</z1-m>
-      <x2-m>-0.585</x2-m>
-      <y2-m>-0.167</y2-m>
-      <z2-m>-0.882</z2-m>
+      <x1-m>-1.414</x1-m>
+      <y1-m>-0.168</y1-m>
+      <z1-m>-0.617</z1-m>
+      <x2-m>-0.625</x2-m>
+      <y2-m>-0.168</y2-m>
+      <z2-m>-0.872</z2-m>
     </axis>
   </animation>
 
@@ -709,12 +746,12 @@
         </entry>
       </interpolation>
       <axis>
-        <x1-m>-1.407</x1-m>
-        <y1-m>0.167</y1-m>
-        <z1-m>-0.77</z1-m>
-        <x2-m>-0.585</x2-m>
-        <y2-m>0.167</y2-m>
-        <z2-m>-0.882</z2-m>
+        <x1-m>-1.414</x1-m>
+        <y1-m>0.168</y1-m>
+        <z1-m>-0.617</z1-m>
+        <x2-m>-0.625</x2-m>
+        <y2-m>0.168</y2-m>
+        <z2-m>-0.872</z2-m>
       </axis>
     </animation>
 
@@ -726,7 +763,7 @@
       <interpolation>
         <entry>
           <ind>0</ind>
-          <dep>185</dep>
+          <dep>180</dep>
         </entry>
         <entry>
           <ind>0.8</ind>
@@ -738,12 +775,12 @@
         </entry>
       </interpolation>
       <axis>
-        <x1-m>1.24</x1-m>
-        <y1-m>-0.26</y1-m>
-        <z1-m>-0.94</z1-m>
-        <x2-m>1.52</x2-m>
+        <x1-m>1.095</x1-m>
+        <y1-m>-0.278</y1-m>
+        <z1-m>-0.943</z1-m>
+        <x2-m>1.31</x2-m>
         <y2-m>-0.55</y2-m>
-        <z2-m>-1.06</z2-m>
+        <z2-m>-1.0</z2-m>
       </axis>
     </animation>
 
@@ -755,11 +792,11 @@
         <interpolation>
         <entry>
           <ind>0</ind>
-          <dep>-190</dep>
+          <dep>-180</dep>
         </entry>
         <entry>
           <ind>0.2</ind>
-          <dep>-190</dep>
+          <dep>-180</dep>
         </entry>
         <entry>
           <ind>1.0</ind>
@@ -767,12 +804,12 @@
         </entry>
       </interpolation>
       <axis>
-        <x1-m>1.24</x1-m>
-        <y1-m>0.26</y1-m>
-        <z1-m>-0.94</z1-m>
-        <x2-m>1.52</x2-m>
+        <x1-m>1.095</x1-m>
+        <y1-m>0.278</y1-m>
+        <z1-m>-0.943</z1-m>
+        <x2-m>1.31</x2-m>
         <y2-m>0.55</y2-m>
-        <z2-m>-1.06</z2-m>
+        <z2-m>-1.0</z2-m>
       </axis>
     </animation>
   </PropertyList>
