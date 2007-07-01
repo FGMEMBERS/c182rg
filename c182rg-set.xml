@@ -38,6 +38,15 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
    <visibility archive="y">false</visibility>
   </panel>
 
+  <instrument-options>
+    <nav>
+      <has-gs-needle archive="y">true</has-gs-needle>
+    </nav>
+    <nav>
+      <has-gs-needle archive="y">true</has-gs-needle>
+    </nav>
+  </instrument-options>
+
   <model>
    <path archive="y">Aircraft/c182rg/Models/c182rg-dpm.xml</path>
     <hide-yoke>false</hide-yoke>

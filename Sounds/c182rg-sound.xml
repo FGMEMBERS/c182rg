@@ -189,10 +189,24 @@
         <property>controls/engines/engine/throttle</property>
         <value>0.3</value>
       </less-than>
-      <equals>
-        <property>controls/gear/gear-handle-down</property>
-        <value>0</value>
-      </equals>
+      <or>
+        <equals>
+          <property>controls/gear/gear-handle-down</property>
+          <value>0</value>
+        </equals>
+	<less-than>
+	  <property>gear/gear[0]/position-norm</property>
+	  <value>0.999</value>
+	</less-than>
+	<less-than>
+	  <property>gear/gear[1]/position-norm</property>
+	  <value>0.999</value>
+	</less-than>
+	<less-than>
+	  <property>gear/gear[2]/position-norm</property>
+	  <value>0.999</value>
+	</less-than>
+      </or>
     </and>
    </condition>
   </gear-horn>
