@@ -147,6 +147,10 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
   </gear>
 </controls>
 
+<gear>
+  <serviceable>true</serviceable>
+</gear>
+
  <instrumentation>
   <encoder>
     <serviceable type="bool">true</serviceable>

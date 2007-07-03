@@ -33,22 +33,38 @@
   <animation>
     <type>select</type>
     <object-name>light-gear-down-on</object-name>
-    <condition>
+    <condition><and>
       <greater-than>
         <property>gear/gear[0]/position-norm</property>
         <value>0.999</value>
       </greater-than>
-    </condition>
+      <greater-than>
+        <property>gear/gear[1]/position-norm</property>
+        <value>0.999</value>
+      </greater-than>
+      <greater-than>
+        <property>gear/gear[2]/position-norm</property>
+        <value>0.999</value>
+      </greater-than>
+    </and></condition>
   </animation>
   <animation>
     <type>select</type>
     <object-name>light-gear-up-on</object-name>
-    <condition>
+    <condition><and>
       <less-than>
         <property>gear/gear[0]/position-norm</property>
-        <value>0.0001</value>
+        <value>0.001</value>
       </less-than>
-    </condition>
+      <less-than>
+        <property>gear/gear[1]/position-norm</property>
+        <value>0.001</value>
+      </less-than>
+      <less-than>
+        <property>gear/gear[2]/position-norm</property>
+        <value>0.001</value>
+      </less-than>
+    </and></condition>
   </animation>
   <animation>
     <type>pick</type>
