@@ -201,6 +201,15 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
   </failures>
  </nasal>
 
+  <fdm>
+   <jsbsim>
+     <propulsion>
+       <engine>
+         <thrust_lb alias="/engines/engine/thrust_lb" />
+       </engine>
+     </propulsion>
+   </jsbsim>
+ </fdm>
 
  <!-- ================ map keyboard ================ -->
  <input> 

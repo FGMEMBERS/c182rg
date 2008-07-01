@@ -5,7 +5,8 @@
     xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
     <fileheader>
-        <author> Unknown </author>
+        <author> Stuart Buchanan </author>
+        <author> Ron Jensen </author>
         <filecreationdate> 2002-01-01 </filecreationdate>
         <description> Cessna C-182RG </description>
     </fileheader>
@@ -372,7 +373,9 @@
     <aerodynamics>
 
         <function name="aero/function/kCLge">
-            <description>Change_in_lift_due_to_ground_effect</description>
+            <description>
+              Change in lift due to ground effect.
+            </description>
             <product>
                   <table>
                       <independentVar>aero/h_b-mac-ft</independentVar>
@@ -395,64 +398,176 @@
             </product>
         </function>
 
-        <axis name="DRAG">
-            <function name="aero/coefficient/CDo">
-                <description>Drag_at_zero_lift</description>
+
+        <!-- begin group:  dimensionless COEFFICIENT of lift -->
+
+            <function name="aero/coefficient/CLo">
+                <description>
+                  Coefficient of lift at zero alpha.
+                </description>
                 <product>
-                    <property>aero/qbar-psf</property>
-                    <property>metrics/Sw-sqft</property>
-                    <value>0.027</value>
+                    <property>aero/function/kCLge</property>
+                    <value>0.3070</value>
                 </product>
             </function>
-            <function name="aero/coefficient/CDalpha">
-                <description>Drag_due_to_alpha</description>
+
+            <function name="aero/coefficient/CLalpha">
+                <description>
+                  Coefficient of lift due to alpha.
+                </description>
                 <product>
-                    <property>aero/qbar-psf</property>
-                    <property>metrics/Sw-sqft</property>
+                    <property>aero/function/kCLge</property>
                       <table>
                           <independentVar>aero/alpha-rad</independentVar>
                           <tableData>
-                              -0.0873   0.0041
-                              -0.0698   0.0013
-                              -0.0524   0.0001
-                              -0.0349   0.0003
-                              -0.0175   0.0020
-                              0.0000    0.0052
-                              0.0175    0.0099
-                              0.0349    0.0162
-                              0.0524    0.0240
-                              0.0698    0.0334
-                              0.0873    0.0442
-                              0.1047    0.0566
-                              0.1222    0.0706
-                              0.1396    0.0860
-                              0.1571    0.0962
-                              0.1745    0.1069
-                              0.1920    0.1180
-                              0.2094    0.1298
-                              0.2269    0.1424
-                              0.2443    0.1565
-                              0.2618    0.1727
-                              0.2793    0.1782
-                              0.2967    0.1716
-                              0.3142    0.1618
-                              0.3316    0.1475
-                              0.3491    0.1097
+                              -0.0900   -0.5270
+                              0.0000    -0.0570
+                              0.1400    0.7130  <!--  8 degrees -->
+                              0.2100    0.9450  <!-- 12 degrees -->
+                              0.2400    1.0470
+                              0.2600    1.1330
+                              0.2800    1.1590  <!-- 16 degrees : stall -->
+                              0.3000    1.1250
+                              0.3200    1.0740
+                              0.3400    0.9910
+                              0.3600    0.6630  <!-- 20 degrees -->
                           </tableData>
                       </table>
                 </product>
             </function>
-            <function name="aero/coefficient/CDbeta">
-                <description>Drag_due_to_sideslip</description>
+
+            <function name="aero/coefficient/CLDf">
+                <description>
+                  Coefficient of lift due to flap deflection.
+                </description>
+                <product>
+                    <property>aero/function/kCLge</property>
+                      <table>
+                          <independentVar>fcs/flap-pos-deg</independentVar>
+                          <tableData>
+                              0.0000    0.0000
+                              10.0000   0.2000
+                              20.0000   0.3000
+                              30.0000   0.3500
+                          </tableData>
+                      </table>
+                </product>
+            </function>
+
+            <function name="aero/coefficient/CLadot">
+                <description>
+                  Coefficient of lift due to alpha rate.
+                </description>
+                <product>
+                    <property>aero/alphadot-rad_sec</property>
+                    <property>aero/ci2vel</property>
+                    <value>1.7000</value>
+                </product>
+            </function>
+
+            <function name="aero/coefficient/CLq">
+                <description>
+                  Coefficient of lift due to pitch rate.
+                </description>
+                <product>
+                    <property>velocities/q-aero-rad_sec</property>
+                    <property>aero/ci2vel</property>
+                    <value>3.9000</value>
+                </product>
+            </function>
+
+            <function name="aero/coefficient/CLDe">
+                <description>
+                  Coefficient of lift due to elevator deflection.
+                </description>
+                <product>
+                    <property>fcs/elevator-pos-rad</property>
+                    <value>0.21</value>
+                </product>
+            </function>
+
+            <function name="aero/coefficient/CL">
+                <description>
+                  Total coefficient of lift.
+                </description>
+                <sum>
+                    <property>aero/coefficient/CLo</property>
+                    <property>aero/coefficient/CLalpha</property>
+                    <property>aero/coefficient/CLDf</property>
+                    <property>aero/coefficient/CLadot</property>
+                    <property>aero/coefficient/CLq</property>
+                    <property>aero/coefficient/CLDe</property>
+                </sum>
+            </function>
+
+
+        <!-- end group: dimensionless COEFFICIENT of lift -->
+
+        <function name="aero/coefficient/FL">
+            <description>
+                Force of lift, total.
+                Just for debugging;  not used anywhere.
+            </description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <property>aero/coefficient/CL</property>
+            </product>
+        </function>
+
+        <axis name="DRAG">
+            <function name="aero/coefficient/FDo">
+                <description>
+                  Force of drag at zero lift.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>aero/mag-beta-rad</property>
-                    <value>0.1700</value>
+                    <value>0.015</value>
                 </product>
             </function>
-            <function name="aero/coefficient/CDDf">
-                <description>Drag_due_to_flap_deflection</description>
+
+            <function name="aero/coefficient/FDIalpha">
+                <description>
+                  Force of drag (induced) due to alpha.
+                </description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>aero/coefficient/CL</property>
+                    <property>aero/coefficient/CL</property>
+                    <value>0.065</value>
+                </product>
+            </function>
+
+            <function name="aero/coefficient/FDPalpha">
+                <description>
+                  Force of drag (parasite) due to alpha.
+                  Large when alpha is beyond critical.
+                </description>
+                <product>
+                    <!-- FIXME -->
+                    <value>0</value>
+                </product>
+            </function>
+
+            <function name="aero/coefficient/FDbeta">
+                <description>
+                  Force of drag due to slip.
+                </description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>aero/beta-rad</property>
+                    <property>aero/beta-rad</property>
+                    <value>1.500</value>
+                </product>
+            </function>
+
+            <function name="aero/coefficient/FDDf">
+                <description>
+                  Force of drag due to flap deflection.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -460,7 +575,7 @@
                           <independentVar lookup="row">aero/alpha-rad</independentVar>
                           <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
                           <tableData>
-                                0.0000  10.0000 20.0000 30.0000
+                                        0.0000  10.0000 20.0000 30.0000
                               -0.0873   0.0000  0.0030  0.0084  0.0153
                               -0.0698   0.0000  0.0061  0.0131  0.0208
                               -0.0524   0.0000  0.0092  0.0178  0.0263
@@ -491,26 +606,32 @@
                       </table>
                 </product>
             </function>
-    <function name="aero/coefficient/CDgear">
-       <description>Drag_due_to_gear</description>
-         <product>
-           <property>aero/qbar-psf</property>
-           <property>metrics/Sw-sqft</property>
-            <table name="GearPosition">
-                <independentVar>gear/gear-pos-norm</independentVar>
-                <tableData>
-                  0   0
-                  0.1 1
-                  0.5 1.5
-                  1   1
-                </tableData>
-            </table>
-           <value>0.02</value>
-         </product>
-    </function>
 
-            <function name="aero/coefficient/CDDe">
-                <description>Drag_due_to_Elevator_Deflection</description>
+            <function name="aero/coefficient/FDgear">
+              <description>
+                Force of drag due to gear.
+              </description>
+              <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <value>.01</value>
+                 <table>
+                     <independentVar>gear/gear-pos-norm</independentVar>
+                     <tableData>
+                       0.0 0.0
+                       0.1 1.0
+                       0.5 1.5
+                       1.0 1.0
+                     </tableData>
+                 </table>
+              </product>
+            </function>
+
+            <function name="aero/coefficient/FDDe">
+                <description>
+                  Force of drag due to Elevator Deflection.
+                  Effect is small.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -521,23 +642,24 @@
         </axis>
 
         <axis name="SIDE">
-            <function name="aero/coefficient/CYb">
-                <description>Side_force_due_to_beta</description>
+            <function name="aero/coefficient/FYb">
+                <description>
+                    Side Force due to slip (beta) (per radian).
+                    Makes boat turn possible.
+                    Contributes to damping of Dutch Roll mode.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/beta-rad</property>
-                      <table>
-                          <independentVar>aero/alpha-rad</independentVar>
-                          <tableData>
-                              0.0000    -0.3930
-                              0.0943    -0.4040
-                          </tableData>
-                      </table>
+                    <value>-0.5</value> 
                 </product>
+
             </function>
-            <function name="aero/coefficient/CYp">
-                <description>Side_force_due_to_roll_rate</description>
+            <function name="aero/coefficient/FYp">
+                <description>
+                  Side force due to roll rate.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -552,8 +674,10 @@
                       </table>
                 </product>
             </function>
-            <function name="aero/coefficient/CYr">
-                <description>Side_force_due_to_yaw_rate</description>
+            <function name="aero/coefficient/FYr">
+                <description>
+                  Side force due to yaw rate.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -568,8 +692,10 @@
                       </table>
                 </product>
             </function>
-            <function name="aero/coefficient/CYDa">
-                <description>Side_force_due_to_aileron</description>
+            <function name="aero/coefficient/FYDa">
+                <description>
+                  Side force due to aileron.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -577,8 +703,10 @@
                     <value>0.0000</value>
                 </product>
             </function>
-            <function name="aero/coefficient/CYDr">
-                <description>Side_force_due_to_rudder</description>
+            <function name="aero/coefficient/FYDr">
+                <description>
+                  Side force due to rudder.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -586,111 +714,108 @@
                     <value>0.1870</value>
                 </product>
             </function>
+
         </axis>
 
         <axis name="LIFT">
-            <function name="aero/coefficient/CLo">
-                <description>Lift_at_zero_alpha</description>
+            <function name="aero/coefficient/FLo">
+                <description>
+                    Force of lift at zero alpha.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>aero/function/kCLge</property>
-                    <value>0.3070</value>
+                    <property>aero/coefficient/CLo</property>
                 </product>
             </function>
-            <function name="aero/coefficient/CLalpha">
-                <description>Lift_due_to_alpha</description>
+
+            <function name="aero/coefficient/FLalpha">
+                <description>
+                    Force of lift due to alpha.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>aero/function/kCLge</property>
-                      <table>
-                          <independentVar>aero/alpha-rad</independentVar>
-                          <tableData>
-                              -0.0900   -0.5270
-                              0.0000    -0.0570
-                              0.1400    0.7130
-                              0.2100    0.9450
-                              0.2400    1.0470
-                              0.2600    1.1330
-                              0.2800    1.1590
-                              0.3000    1.1250
-                              0.3200    1.0740
-                              0.3400    0.9910
-                              0.3600    0.6630
-                          </tableData>
-                      </table>
+                    <property>aero/coefficient/CLalpha</property>
                 </product>
             </function>
-            <function name="aero/coefficient/CLDf">
-                <description>Lift_due_to_flap_deflection</description>
+
+            <function name="aero/coefficient/FLDf">
+                <description>
+                    Force of lift due to flap deflection.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>aero/function/kCLge</property>
-                      <table>
-                          <independentVar>fcs/flap-pos-deg</independentVar>
-                          <tableData>
-                              0.0000    0.0000
-                              10.0000   0.2000
-                              20.0000   0.3000
-                              30.0000   0.3500
-                          </tableData>
-                      </table>
+                    <property>aero/coefficient/CLDf</property>
                 </product>
             </function>
-            <function name="aero/coefficient/CLadot">
-                <description>Lift_due_to_alpha_rate</description>
+
+            <function name="aero/coefficient/FLadot">
+                <description>
+                    Force of lift due to alpha rate.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>aero/alphadot-rad_sec</property>
-                    <property>aero/ci2vel</property>
-                    <value>1.7000</value>
+                    <property>aero/coefficient/CLadot</property>
                 </product>
             </function>
-            <function name="aero/coefficient/CLq">
-                <description>Lift_due_to_pitch_rate</description>
+
+            <function name="aero/coefficient/FLq">
+                <description>
+                    Force of lift due to pitch rate.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>velocities/q-aero-rad_sec</property>
-                    <property>aero/ci2vel</property>
-                    <value>3.9000</value>
+                    <property>aero/coefficient/CLq</property>
                 </product>
             </function>
-            <function name="aero/coefficient/CLDe">
-                <description>Lift_due_to_elevator_deflection</description>
+
+            <function name="aero/coefficient/FLDe">
+                <description>
+                    Force of lift due to elevator deflection.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>fcs/elevator-pos-rad</property>
-                    <value>0.4300</value>
+                    <property>aero/coefficient/CLDe</property>
                 </product>
             </function>
+
         </axis>
 
         <axis name="ROLL">
-            <function name="aero/coefficient/Clb">
-                <description>Roll_moment_due_to_beta</description>
+            <function name="aero/coefficient/Mlb">
+                <description>
+                    Roll Moment due to slip (beta) (per radian).
+                    Decrease of Mlb to small negative value improves Dutch Roll Damping.
+                    High Positive value leads to excessive spiral instability.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
+                    <value>0.3</value>
                       <table>
                           <independentVar lookup="row">aero/beta-rad</independentVar>
                           <independentVar lookup="column">aero/alpha-rad</independentVar>
                           <tableData>
-                                0.0000  0.0943
-                              -0.3490   0.00322  0.00312
-                              0.0000    0.0000  0.0000
-                              0.3490    -0.00322 -0.00312
+                                        0.0000    0.0943
+                             -0.3490    0.0322    0.0312
+                              0.0000    0.0000    0.0000
+                              0.3490   -0.0322   -0.0312
                           </tableData>
                       </table>
                 </product>
             </function>
-            <function name="aero/coefficient/Clp">
-                <description>Roll_moment_due_to_roll_rate_(roll_damping)</description>
+
+            <function name="aero/coefficient/Mlp">
+                <description>
+                  Roll moment due to roll rate.
+                  Canonical contribution to roll damping.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -702,12 +827,16 @@
                           <tableData>
                               0.0000    -0.4840
                               0.0943    -0.4870
+                              0.3000     0.0        <!-- above stall -->
                           </tableData>
                       </table>
                 </product>
             </function>
-            <function name="aero/coefficient/Clr">
-                <description>Roll_moment_due_to_yaw_rate</description>
+
+            <function name="aero/coefficient/Mlr">
+                <description>
+                  Roll moment due to yaw rate.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -723,18 +852,38 @@
                       </table>
                 </product>
             </function>
-            <function name="aero/coefficient/ClDa">
-                <description>Roll_moment_due_to_aileron</description>
+
+            <function name="aero/coefficient/MlDa">
+                <description>
+                    Roll moment due to aileron deflection.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-                    <value>0.20</value>
+                    <value>0.10</value>
                 </product>
             </function>
-            <function name="aero/coefficient/ClDr">
-                <description>Roll_moment_due_to_rudder</description>
+
+            <function name="aero/coefficient/MlDt">
+                <description>
+                    Roll moment due to engine thrust.
+		    (E.g. asymmetric incidence of wing roots.)
+                </description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/bw-ft</property>
+                    <property>propulsion/engine/thrust_lb</property>
+                    <value>0.000006</value>
+                </product>
+            </function>
+
+            <function name="aero/coefficient/MlDr">
+                <description>
+                  Roll moment due to rudder.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -746,33 +895,41 @@
         </axis>
 
         <axis name="PITCH">
-            <function name="aero/coefficient/Cmo">
-                <description>Pitching_moment_at_zero_alpha</description>
+            <function name="aero/coefficient/Mmo">
+                <description>
+                   Pitching moment at zero alpha.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
-                    <value>0.0400</value>
+                    <value>0.00</value>
                 </product>
             </function>
-            <function name="aero/coefficient/Cmalpha">
-                <description>Pitch_moment_due_to_alpha</description>
+
+            <function name="aero/coefficient/Mmalpha">
+                <description>
+                  Pitch moment due to alpha.
+                  Includes major contribution from decalage.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
+                    <!-- This actually does depend on alpha-rad, which
+                      is the fuselage alpha, rather the wing alpha.
+                      The difference is crucial when flaps are extended. -->
                     <property>aero/alpha-rad</property>
-                      <table>
-                          <independentVar>aero/alpha-rad</independentVar>
-                          <tableData>
-                              0.0000    -0.6130
-                              0.0943    -0.6500
-                          </tableData>
-                      </table>
+                    <!-- FIXME: The contribution from the wing itself
+                    becomes significant when alpha is beyond critical -->
+                    <value>-0.6</value> <!-- SAME value in MmDf -->
                 </product>
             </function>
-            <function name="aero/coefficient/Cmadot">
-                <description>Pitch_moment_due_to_alpha_rate</description>
+
+            <function name="aero/coefficient/Mmadot">
+                <description>
+                  Pitch moment due to alpha rate.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -788,36 +945,53 @@
                       </table>
                 </product>
             </function>
-            <function name="aero/coefficient/Cmq">
-                <description>Pitch_moment_due_to_pitch_rate</description>
+
+            <function name="aero/coefficient/Mmq">
+                <description>
+                  Pitch moment due to pitch rate.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>aero/ci2vel</property>
                     <property>velocities/q-aero-rad_sec</property>
-                    <value>-12.4000</value>
+                    <value>-6.0</value>
                 </product>
             </function>
-            <function name="aero/coefficient/CmDf">
-                <description>Pitch_moment_due_to_flap_deflection</description>
+
+            <function name="aero/coefficient/MmDf">
+                <description>
+                  Pitch moment due to flaps.
+                  Primarily to compensate for Mmalpha * change in incidence.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
-                      <table>
-                          <independentVar>fcs/flap-pos-deg</independentVar>
-                          <tableData>
-                              0.0000    0.0000
-                              10.0000   -0.0654
-                              20.0000   -0.0981
-                              30.0000   -0.1140
-                          </tableData>
-                      </table>
+                    <property>fcs/flap-pos-deg</property>
+                    <value>0.0033</value>
+                    <value>-0.6</value> <!-- SAME value in Mmalpha -->
                 </product>
             </function>
-            <function name="aero/coefficient/CmDe">
-                <description>Pitch_moment_due_to_elevator_deflection</description>
+
+            <function name="aero/coefficient/MmDft">
+                <description>
+                  Pitch moment due to flaps * thrust.
+                </description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/cbarw-ft</property>
+                    <property>propulsion/engine/thrust_lb</property>
+                    <value>.00001</value>
+                </product>
+            </function>
+
+            <function name="aero/coefficient/MmDe">
+                <description>
+                  Pitch moment due to elevator deflection.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -826,8 +1000,8 @@
                       <table>
                           <independentVar>aero/alpha-rad</independentVar>
                           <tableData>
-                              0.0000    -0.6220
-                              0.0943    -0.8690
+                              0.0000    -0.31
+                              0.0943    -0.43
                           </tableData>
                       </table>
                 </product>
@@ -835,8 +1009,12 @@
         </axis>
 
         <axis name="YAW">
-            <function name="aero/coefficient/Cnb">
-                <description>Yaw_moment_due_to_beta</description>
+            <function name="aero/coefficient/Mnb">
+                <description>
+                    Yaw moment due to slip (beta) (per radian)
+                    Determines Dutch Roll and Spiral characteristics.
+                    Prevents side-slip and yawing moments.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -851,8 +1029,13 @@
                       </table>
                 </product>
             </function>
-            <function name="aero/coefficient/Cnp">
-                <description>Yaw_moment_due_to_roll_rate</description>
+
+            <function name="aero/coefficient/Mnp">
+                <description>
+                    Yaw moment due to roll rate (per radian)
+                    Reduces Dutch Roll damping.
+                    Positive value desirable.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -868,25 +1051,28 @@
                       </table>
                 </product>
             </function>
-            <function name="aero/coefficient/Cnr">
-                <description>Yaw_moment_due_to_yaw_rate</description>
+
+            <function name="aero/coefficient/Mnr">
+                <description>
+                    Yaw Moment due to yaw rate (per radian)
+                    Aka yaw damping.
+                    Main contributor to damping of Dutch Roll.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
-                      <table>
-                          <independentVar>aero/alpha-rad</independentVar>
-                          <tableData>
-                              0.0000    -0.0937
-                              0.0943    -0.1199
-                          </tableData>
-                      </table>
+                    <value>-0.3</value>
                 </product>
             </function>
-            <function name="aero/coefficient/CnDa">
-                <description>Yaw_moment_due_to_aileron</description>
+
+            <function name="aero/coefficient/MnDa">
+                <description>
+                  Yaw moment due to aileron.
+                  One of the big contributors to adverse yaw.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -895,14 +1081,17 @@
                       <table>
                           <independentVar>aero/alpha-rad</independentVar>
                           <tableData>
-                              0.0000    -0.0216
-                              0.0943    -0.0504
+                             -0.2000     0.0500
+                              0.0500     0.0000  <!-- 2.86 deg : cruise -->
+                              0.3000    -0.0500  <!-- 17.2 deg : stall+ -->
                           </tableData>
                       </table>
                 </product>
             </function>
-            <function name="aero/coefficient/CnDr">
-                <description>Yaw_moment_due_to_rudder</description>
+            <function name="aero/coefficient/MnDr">
+                <description>
+                  Yaw moment due to rudder.
+                </description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
