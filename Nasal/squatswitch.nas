@@ -11,18 +11,23 @@ gearFncy = func {
       # don't move the actual gear up or down now ...
       settimer(gearFncy, 0.2);		# ... but check back soon
       return;
-    };
+    }
 
-    wow    = getprop("/gear/gear[0]/wow");
+    # In v1.9 there is an FDM bug where the wow property isn't set properly
+    # if the aircraft is reset using the location-in-air menu. Therefore
+    # we need to use gear compression instead. We don't use the nosewheel,
+    # as it can come off the ground when taxiing or during the take-off roll.
+    # wow    = getprop("/gear/gear[0]/wow");
+    var wow = getprop("/gear/gear[1]/compression-norm") > 0.001;
+
     if(handle or !wow){
       original_gearDown(handle ? 1 : -1);
     } else {
-# In the presumably-rare situation where the gear handle
-# is up, but there is weight on the wheels, we need to
-# notice when the weight comes off.   Let's do this with a
-# timer, because some FDMs write to the "wow" property once
-# per frame, even if its value hasn't changed, making it
-# inefficient to attach a listener.
+      # In the rare situation where the gear handle is up but there is
+      # weight on the wheels, we need to notice when the weight eventually
+      # comes off. The FDM writes to "wow" and "compression-norm" once
+      # per frame, even if the value hasn't changed. This makes a listener
+      # inefficient, so we use a timer instead. 
       settimer(gearFncy, 0.2);
     }
 }
