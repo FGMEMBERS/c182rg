@@ -28,14 +28,18 @@
    </volume>
   </crank>
 
-  <crank>
-   <name>cough</name>
-   <path>Sounds/coughing.wav</path>
-   <property>/engines/engine/running</property>
-   <volume>
-    <offset>0.3</offset>
-   </volume>
-  </crank>
+  <cough>
+    <name>cough</name>
+    <path>Sounds/coughing.wav</path>
+    <condition>
+      <property>/engines/engine/running</property>
+    </condition>
+    <volume>
+      <property>/sim/signals/fdm-initialized</property>    
+      <factor>0.3</factor>
+      <max>1.0</max>
+    </volume>
+  </cough>
 
   <engine>
    <name>engine</name>
@@ -44,10 +48,11 @@
    <property>/engines/engine/running</property>
    <volume>
     <property>/engines/engine/mp-osi</property>
-    <factor>0.0285</factor>
-    <offset>0.20</offset>
+    <factor>0.027777</factor>
 <!-- these values of min and max are unlikely to be relevant, 
-  because the MAP is unlikely to go below 5" or above 28" 
+  because the MAP is unlikely to go below 5" or above 28".
+  Also note that propeller noise is additional to engine
+  noise, rather like an <offset>.
 -->
     <max>1.0</max>
     <min>0.10</min>
@@ -57,9 +62,33 @@
     <factor>0.0004</factor>
     <min>0.0</min>
     <max>2.0</max>
-    <offset>0.15</offset>
+    <offset>0.01</offset>
    </pitch>
   </engine>
+
+  <propeller>
+   <name>propeller</name>
+   <mode>looped</mode>
+   <path>Sounds/wasp.wav</path>
+    <condition>
+      <greater-than>
+        <property>/engines/engine/rpm</property>
+        <value>10</value>
+      </greater-than>
+   </condition>
+   <volume>
+    <property>/engines/engine/rpm</property>
+    <factor>0.0001</factor>
+    <max>0.25</max>
+   </volume>
+   <pitch>
+    <property>/engines/engine/rpm</property>
+    <factor>0.0004</factor>
+    <min>0.0</min>
+    <max>2.0</max>
+    <offset>0.01</offset>
+   </pitch>
+  </propeller>
 
   <rumble>
    <name>rumble</name>
@@ -81,9 +110,18 @@
 
   <gear>
    <name>gear</name>
-   <mode>in-transit</mode>
+   <mode>looped</mode>
    <path>Sounds/gear.wav</path>
-   <property>/gear/gear[0]/position-norm</property>
+   <condition>
+     <greater-than>
+       <property>/gear/gear[0]/position-norm</property>
+       <value>0.001</value>
+     </greater-than>
+     <less-than>
+       <property>/gear/gear[0]/position-norm</property>
+       <value>0.999</value>
+     </less-than>
+   </condition>
    <pitch>
     <internal>dt_play</internal>
     <offset>1.0</offset>
