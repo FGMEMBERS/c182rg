@@ -15,7 +15,6 @@ Maintainer: Stuart Buchanan stuart_d_buchanan -at- yahoo.co.uk
 
   <description>Cessna 182RG</description>
   <author>Stuart Buchanan</author>
-  <author>Ron Jensen</author>
   <status>alpha</status>
   <rating>
     <FDM type="int">3</FDM>
