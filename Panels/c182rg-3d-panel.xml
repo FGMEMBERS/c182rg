@@ -20,7 +20,7 @@ David Megginson <david@megginson.com>
  <instruments>
 
  <!-- engine gauge cluster -->  
-  <instrument include="Aircraft/Instruments/clock.xml">
+  <instrument include="../../Instruments/clock.xml">
    <name>Chronometer</name>
    <x>45</x>
    <y>234</y>
@@ -28,7 +28,7 @@ David Megginson <david@megginson.com>
    <h>74</h>
   </instrument>
 
-  <instrument include="Aircraft/Instruments/egt.xml">
+  <instrument include="../../Instruments/egt.xml">
    <name>Exhaust Gas Temperature Gauge</name>
    <x>1025</x>
    <y>397</y>
@@ -36,7 +36,7 @@ David Megginson <david@megginson.com>
    <h>74</h>
   </instrument>
 
-  <instrument include="Aircraft/Instruments/fuel.xml">
+  <instrument include="../../Instruments/fuel.xml">
    <name>Fuel Gauge</name>
    <x>950</x>
    <y>397</y>
@@ -44,7 +44,7 @@ David Megginson <david@megginson.com>
    <h>74</h>
   </instrument>
 
-  <instrument include="Aircraft/Instruments/oil.xml">
+  <instrument include="../../Instruments/oil.xml">
    <name>Oil Gauge</name>
    <x>950</x>
    <y>320</y>
@@ -52,7 +52,7 @@ David Megginson <david@megginson.com>
    <h>74</h>
   </instrument>
   
-  <instrument include="Aircraft/Instruments/vacamp.xml">
+  <instrument include="../../Instruments/vacamp.xml">
    <name>Vacuum Pressure Gauge</name>
    <x>1025</x>
    <y>320</y>
@@ -60,7 +60,7 @@ David Megginson <david@megginson.com>
    <h>74</h>
   </instrument>
 
-  <instrument include="Aircraft/Instruments/single-manifold-pressure.xml">
+  <instrument include="../../Instruments/single-manifold-pressure.xml">
    <name>Manifold Pressure Gauge</name>
    <x>980</x>
    <y>207</y>
@@ -71,7 +71,7 @@ David Megginson <david@megginson.com>
 
 <!-- engine controls cluster -->  
  
-  <instrument include="Aircraft/c182/Panels/tach-skylane.xml">
+  <instrument include="../../c182/Panels/tach-skylane.xml">
    <name>RPM Gauge</name>
    <x>980</x>
    <y>74</y>
@@ -79,7 +79,7 @@ David Megginson <david@megginson.com>
    <h>120</h>
   </instrument>
 
- <instrument include="Aircraft/Instruments/single-magneto-switch.xml">
+ <instrument include="../../Instruments/single-magneto-switch.xml">
    <name>Magneto switch panel</name>
    <x>137</x>
    <y>53</y>
@@ -97,7 +97,7 @@ David Megginson <david@megginson.com>
 
 <!-- sacred six -->
 
-  <instrument include="Aircraft/Instruments/asi-160-knot.xml">
+  <instrument include="../../Instruments/asi-160-knot.xml">
    <name>Airspeed Indicator</name>
    <x>146</x>
    <y>300</y>
@@ -105,7 +105,7 @@ David Megginson <david@megginson.com>
    <h>128</h>
   </instrument>
 
-  <instrument include="Aircraft/Instruments/attitude-indicator.xml">
+  <instrument include="../../Instruments/attitude-indicator.xml">
    <name>Attitude Gyro</name>
    <x>279</x>
    <y>330</y>
@@ -113,7 +113,7 @@ David Megginson <david@megginson.com>
    <h>128</h>
   </instrument>
 
-  <instrument include="Aircraft/Instruments/altimeter.xml">
+  <instrument include="../../Instruments/altimeter.xml">
    <name>Altimeter</name>
    <x>412</x>
    <y>340</y>
@@ -121,7 +121,7 @@ David Megginson <david@megginson.com>
    <h>120</h>
   </instrument>
 
-  <instrument include="Aircraft/Instruments/turn.xml">
+  <instrument include="../../Instruments/turn.xml">
    <name>Turn Coordinator</name>
    <x>146</x>
    <y>167</y>
@@ -129,7 +129,7 @@ David Megginson <david@megginson.com>
    <h>120</h>
   </instrument>
 
-  <instrument include="Aircraft/Instruments/hsi.xml">
+  <instrument include="../../Instruments/hsi.xml">
    <name>Directional Gyro</name>
    <x>279</x>
    <y>197</y>
@@ -137,7 +137,7 @@ David Megginson <david@megginson.com>
    <h>120</h>
   </instrument>
 
-  <instrument include="Aircraft/Instruments/vertical.xml">
+  <instrument include="../../Instruments/vertical.xml">
    <name>Vertical Velocity Indicator</name>
    <x>412</x>
    <y>207</y>
@@ -149,7 +149,7 @@ David Megginson <david@megginson.com>
 
 <!-- radio nav instruments --> 
 
-  <instrument include="Aircraft/Instruments/nav1.xml">
+  <instrument include="../../Instruments/nav1.xml">
   <name>VOR 2 Gauge</name>
   <params>
    <nav-to-flag>/instrumentation/nav[1]/to-flag</nav-to-flag>
@@ -169,7 +169,7 @@ David Megginson <david@megginson.com>
 
 <!-- end radio nav instruments -->
 
-  <instrument include="Aircraft/Instruments/logo.xml">
+  <instrument include="../../Instruments/logo.xml">
    <name>Tail Number Plate</name>
    <x>345</x>
    <y>410</y>
@@ -179,7 +179,7 @@ David Megginson <david@megginson.com>
 
 <!-- radio stack -->
 
-  <instrument include="Aircraft/Instruments/dme.xml">
+  <instrument include="../../Instruments/dme.xml">
    <name>DME Display</name>
    <x>775</x>
    <y>366</y>
@@ -187,19 +187,19 @@ David Megginson <david@megginson.com>
    <h>59</h>
   </instrument>
 
-  <instrument include="Aircraft/Instruments/markerbeacon.xml">
+  <instrument include="../../Instruments/markerbeacon.xml">
    <name>Marker Beacon Indicators</name>
    <x>680</x>
    <y>348</y>
    </instrument>
 
-  <instrument include="Aircraft/Instruments/navcom-radio.xml">
+  <instrument include="../../Instruments/navcom-radio.xml">
    <name>NavCom 1 Radio</name>
    <x>775</x>
    <y>303</y>
   </instrument>
 
-  <instrument include="Aircraft/Instruments/navcom-radio.xml">
+  <instrument include="../../Instruments/navcom-radio.xml">
    <name>NavCom 2 Radio</name>
    <params>
     <comm-freq-selected-prop>/instrumentation/comm[1]/frequencies/selected-mhz</comm-freq-selected-prop>
@@ -213,21 +213,21 @@ David Megginson <david@megginson.com>
    <y>240</y>
   </instrument>
   
-  <instrument include="Aircraft/Instruments/adf-radio.xml">
+  <instrument include="../../Instruments/adf-radio.xml">
    <name>ADF Radio</name>
    <x>775</x>
    <y>176</y>
   </instrument>
 
 <!--
-  <instrument include="Aircraft/Instruments/autopilot.xml">
+  <instrument include="../../Instruments/autopilot.xml">
    <name>Autopilot</name>
    <x>775</x>
    <y>166</y>
   </instrument>
 -->
 
-  <instrument include="Aircraft/Instruments/KAP140TwoAxisAlt.xml">
+  <instrument include="../../Instruments/KAP140TwoAxisAlt.xml">
    <name>KAP140 Autopilot</name>
    <x>775</x>
    <y>104</y>
@@ -239,7 +239,7 @@ David Megginson <david@megginson.com>
 
 <!-- center stack controls -->
 
-  <instrument include="Aircraft/Instruments/brakes.xml">
+  <instrument include="../../Instruments/brakes.xml">
    <name>Brake Indicator Light</name>
    <x>279</x>
    <y>-200</y>

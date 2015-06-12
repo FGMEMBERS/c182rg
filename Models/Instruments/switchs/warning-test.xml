@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+    April 2012 : Modified by PAF team
+-->
+<PropertyList>
+
+  <path>switch.ac</path>
+
+  <animation>
+    <object-name>Switch</object-name>
+    <object-name>SwitchNut</object-name>
+    <object-name>hotspotUp</object-name>
+    <object-name>hotspotDown</object-name>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>hotspotUp</object-name>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>Switch</object-name>
+    <condition>
+      <not><property>controls/lighting/warning-mode</property></not>
+    </condition>
+    <property>controls/lighting/warning-test</property>
+    <factor> 35 </factor>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>Switch</object-name>
+    <condition>
+      <property>controls/lighting/warning-mode</property>
+    </condition>
+    <property>controls/lighting/warning-test</property>
+    <factor> 70 </factor>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>Switch</object-name>
+    <property>controls/lighting/warning-mode</property>
+    <factor> -35 </factor>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <visible>true</visible>
+    <object-name>Switch</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/lighting/warning-mode</property>
+      </binding>
+    </action>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <visible>false</visible>
+    <object-name>hotspotDown</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/lighting/warning-test</property>
+      </binding>
+      <mod-up>
+        <binding>
+          <command>property-toggle</command>
+          <property>controls/lighting/warning-test</property>
+        </binding> 
+      </mod-up>
+    </action>
+  </animation>
+
+</PropertyList>
+

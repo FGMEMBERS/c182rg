@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+ <path>fuel-pump.ac</path>
+
+  <animation>
+    <!-- Objets opaques -->
+    <object-name>on-off</object-name>
+
+    <!-- Objets transparents -->
+  </animation>
+  
+  <animation>
+    <type>material</type>
+    <object-name>on-off</object-name>
+    <emission>
+      <red>   0 </red>
+      <green> 0 </green>
+      <blue>  0 </blue>
+      <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <visible>true</visible>
+    <object-name>on-off</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/fuel/tank/boost-pump</property>
+      </binding>
+    </action>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>on-off</object-name>
+    <property>controls/fuel/tank/boost-pump</property>
+    <factor> 35 </factor>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+
+</PropertyList>
+
+

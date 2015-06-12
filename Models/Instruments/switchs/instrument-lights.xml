@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+    April 2012 : Modified by PAF team
+      May 2012 : Updated by Helijah
+-->
+<PropertyList>
+
+  <path>lights.ac</path>
+
+  <animation>
+    <object-name>knob</object-name>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>knob</object-name>
+    <emission>
+      <red>   0.07 </red>
+      <green> 0.04 </green>
+      <blue>  0.04 </blue>
+      <factor-prop>systems/electrical/outputs/instrument-lights</factor-prop>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>knob</object-name>
+    <property>controls/lighting/instruments-norm</property>
+    <factor> -270 </factor>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <visible>true</visible>
+    <object-name>knob</object-name>
+    <action>
+      <button>4</button>
+      <binding>
+        <command>property-adjust</command>
+        <property>controls/lighting/instruments-norm</property>
+        <step>0.05</step>
+        <min>0</min>
+        <max>1</max>
+      </binding>
+    </action>
+    <action>
+      <button>3</button>
+      <binding>
+        <command>property-adjust</command>
+        <property>controls/lighting/instruments-norm</property>
+        <step>-0.05</step>
+        <min>0</min>
+        <max>1</max>
+      </binding>
+    </action>
+  </animation>
+
+</PropertyList>

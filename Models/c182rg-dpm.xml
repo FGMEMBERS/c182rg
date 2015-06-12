@@ -5,45 +5,122 @@
   <path>c182rg.ac</path>
 
   <!-- 3D Panel -->
-  <panel>
-    <name>Panel</name>
-    <path>Aircraft/c182rg/Panels/c182rg-3d-panel.xml</path>
-    <bottom-left>
-      <x-m>-0.16</x-m>
-      <y-m>-0.55</y-m>
-      <z-m>-0.28</z-m>
-    </bottom-left>
-    <bottom-right>
-      <x-m>-0.16</x-m>
-      <y-m> 0.65</y-m>
-      <z-m>-0.28</z-m>
-    </bottom-right>
-    <top-left>
-      <x-m>-0.16</x-m>
-      <y-m>-0.55</y-m>
-      <z-m> 0.04</z-m>
-    </top-left>
-  </panel>
+  
 
   <model>
     <name>Transponder</name>
     <path>Aircraft/Instruments-3d/kt70/kt70.xml</path>
     <offsets>
       <x-m>-0.155</x-m>
-      <y-m>-0.015</y-m>
+      <y-m>-0.0</y-m>
       <z-m>-0.27</z-m>
     </offsets>
   </model>
 
-  <model>
-    <name>MagCompass</name>
-    <path>Aircraft/Instruments-3d/mag-compass.xml</path>
+
+
+
+<model>
+    <name>AI</name>
+    <path>Aircraft/c182rg/Models/Instruments/ai/ai.xml</path>
     <offsets>
-      <x-m>-0.11</x-m>
-      <y-m>0.00</y-m>
-      <z-m>0.07</z-m>
+      <x-m>-0.155</x-m>
+      <y-m>-0.25</y-m>
+      <z-m>-0.06</z-m>
     </offsets>
   </model>
+
+<model>
+    <name>ASI</name>
+    <path>Aircraft/c182rg/Models/Instruments/asi/asi.xml</path>
+    <offsets>
+      <x-m>-0.155</x-m>
+      <y-m>-0.35</y-m>
+      <z-m>-0.06</z-m>
+    </offsets>
+  </model>
+
+
+
+<model>
+    <name>ALT</name>
+    <path>Aircraft/c182rg/Models/Instruments/alt/alt.xml</path>
+    <offsets>
+      <x-m>-0.155</x-m>
+      <y-m>-0.15</y-m>
+      <z-m>-0.06</z-m>
+    </offsets>
+  </model>
+
+<model>
+    <name>VSI</name>
+    <path>Aircraft/c182rg/Models/Instruments/vsi/vsi.xml</path>
+    <offsets>
+      <x-m>-0.155</x-m>
+      <y-m>-0.15</y-m>
+      <z-m>-0.16</z-m>
+    </offsets>
+  </model>
+
+<model>
+    <name>HI</name>
+    <path>Aircraft/c182rg/Models/Instruments/hi/hi.xml</path>
+    <offsets>
+      <x-m>-0.155</x-m>
+      <y-m>-0.25</y-m>
+      <z-m>-0.16</z-m>
+    </offsets>
+  </model>
+
+<model>
+    <name>TURN</name>
+    <path>Aircraft/c182rg/Models/Instruments/turn/turn.xml</path>
+    <offsets>
+      <x-m>-0.155</x-m>
+      <y-m>-0.35</y-m>
+      <z-m>-0.16</z-m>
+    </offsets>
+  </model>
+
+
+
+
+
+
+<model>
+    <name>RADIO-1</name>
+    <path>Aircraft/c182rg/Models/Instruments/kx165/kx165-1.xml</path>
+    <offsets>
+      <x-m>-0.155</x-m>
+      <y-m>-0.0</y-m>
+      <z-m>-0.14</z-m>
+    </offsets>
+  </model>
+
+<model>
+    <name>RADIO-2</name>
+    <path>Aircraft/c182rg/Models/Instruments/kx165/kx165-2.xml</path>
+    <offsets>
+      <x-m>-0.155</x-m>
+      <y-m>-0.0</y-m>
+      <z-m>-0.2</z-m>
+    </offsets>
+  </model>
+
+<model>
+    <name>RADIO-3</name>
+    <path>Aircraft/c182rg/Models/Instruments/kr87-adf/kr87.xml</path>
+    <offsets>
+      <x-m>-0.185</x-m>
+      <y-m>-0.0</y-m>
+      <z-m>-0.09</z-m>
+    </offsets>
+  </model>
+
+
+
+
+
 
   <model>
     <name>TrimWheel</name>
@@ -70,8 +147,8 @@
     <path>Aircraft/c182rg/Models/gear_control/cessna_gear_control.xml</path>
     <offsets>
       <x-m>-0.18</x-m>
-      <y-m>-0.16</y-m>
-      <z-m>-0.25</z-m>
+      <y-m>-0.1</y-m>
+      <z-m>-0.45</z-m>
       <pitch-deg>-6.5</pitch-deg>
     </offsets>
   </model>
@@ -92,7 +169,7 @@
     <offsets>
       <x-m>-0.14</x-m>
       <y-m>0.15</y-m>
-      <z-m>-0.35</z-m>
+      <z-m>-0.37</z-m>
     </offsets>
   </model>
 
@@ -100,14 +177,42 @@
 
   <model>
     <name>lights</name>
-    <path>Aircraft/c182/Models/lights.xml</path>
+    <path>Aircraft/c182rg/Models/lights.xml</path>
     <offsets>
       <x-m>-0.12</x-m>
       <y-m>-0.2</y-m>
-      <z-m>-0.35</z-m>
+      <z-m>-0.37</z-m>
     </offsets>
   </model>
 
+
+
+
+
+
+
+
+
+<!-- ALL-GLASS-GUAGES-AND-WINDSHIELD -->
+<!--Working For ANY GLASS AND Rembrandt-->
+
+<animation>
+<object-name>vitre</object-name>
+</animation>
+
+<animation>
+<type>noshadow</type>
+<object-name>vitre</object-name>
+</animation>
+
+<animation>
+<type>shader</type>
+<shader>chrome</shader>
+<texture>Aircraft/Gazelle/Models/Effects/gazelle-glass.png</texture>
+<object-name>vitre</object-name>
+</animation>
+
+<!--Working For Rembrandt-->
 
   <!-- LOD for the model as a whole -->
 
@@ -514,7 +619,7 @@
 
   <model>
     <name>LeftNavLight</name>
-    <path>Aircraft/c182/Models/BeaconLight.xml</path>
+    <path>Aircraft/c182rg/Models/BeaconLight.xml</path>
     <offsets>
       <x-m>0.18</x-m>
       <y-m>-5.27</y-m>
@@ -535,7 +640,7 @@
 
   <model>
     <name>RightNavLight</name>
-    <path>Aircraft/c182/Models/BeaconLight.xml</path>
+    <path>Aircraft/c182rg/Models/BeaconLight.xml</path>
     <offsets>
       <x-m>0.18</x-m>
       <y-m>5.27</y-m>
@@ -556,7 +661,7 @@
 
   <model>
     <name>RearNavLight</name>
-    <path>Aircraft/c182/Models/BeaconLight.xml</path>
+    <path>Aircraft/c182rg/Models/BeaconLight.xml</path>
     <offsets>
       <x-m>5.97</x-m>
       <y-m>0</y-m>
@@ -587,7 +692,7 @@
 
   <model>
     <name>BeaconOn</name>
-    <path>Aircraft/c182/Models/BeaconLight.xml</path>
+    <path>Aircraft/c182rg/Models/BeaconLight.xml</path>
     <offsets>
       <x-m>0.3</x-m>
       <y-m>0.0</y-m>
@@ -624,7 +729,7 @@
 
   <model>
     <name>StrobeOn</name>
-    <path>Aircraft/c182/Models/StrobeLight.xml</path>
+    <path>Aircraft/c182rg/Models/StrobeLight.xml</path>
     <offsets>
       <x-m>0.5</x-m>
       <y-m>0.0</y-m>

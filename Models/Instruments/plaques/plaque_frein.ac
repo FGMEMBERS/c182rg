@@ -1,0 +1,26 @@
+AC3Db
+MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
+MATERIAL "Material" rgb 0.8 0.8 0.8 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 32 trans 0
+OBJECT world
+kids 1
+OBJECT poly
+name "Plane"
+data 6
+plaque
+texture "plaque.png"
+texrep 1 1
+crease 30.000000
+numvert 4
+0.006239 -0.021877 -0.01151
+0.006239 -0.021877 0.011871
+-0.005691 0.008027 0.011871
+-0.005691 0.008027 -0.01151
+numsurf 1
+SURF 0x00
+mat 1
+refs 4
+0 0.354888528585 0.31151586771
+3 0.354573041201 0.872939348221
+2 0.259764790535 0.873066663742
+1 0.260111421347 0.31202340126
+kids 0
