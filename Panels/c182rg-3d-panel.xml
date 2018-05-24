@@ -71,7 +71,7 @@ David Megginson <david@megginson.com>
 
 <!-- engine controls cluster -->  
  
-  <instrument include="Aircraft/c182/Panels/tach-skylane.xml">
+  <instrument include="Aircraft/Instruments/tach-2700-redline.xml">
    <name>RPM Gauge</name>
    <x>980</x>
    <y>74</y>
